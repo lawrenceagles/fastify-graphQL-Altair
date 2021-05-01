@@ -1,8 +1,11 @@
 const fastify = require('fastify')({ logger: true });
+const db = require('./config/index');
+
 const Port = process.env.PORT || 4500;
-const uri = process.env.MONGODB_URI || 0000;
+const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/graphql-blog';
 
 // Register plugins below:
+fastify.register(db, { uri });
 
 // create server
 const start = async () => {
