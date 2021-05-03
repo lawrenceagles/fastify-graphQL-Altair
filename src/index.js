@@ -1,12 +1,13 @@
-const app = require('fastify')({ logger: true });
-const mercurius = require('mercurius');
-const db = require('./config/index');
-const schema = require('./graphql/schema');
-const resolvers = require('./graphql/resolvers');
+import fastify from 'fastify';
+import mercurius from 'mercurius';
+import db from './config/index';
+import schema from './graphql/schema';
+import resolvers from './graphql/resolvers';
 
 const Port = process.env.PORT || 4500;
 const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/graphql-blog';
 
+const app = fastify({ logger: true });
 // Register plugins below:
 app.register(db, { uri });
 app.register(mercurius, {
