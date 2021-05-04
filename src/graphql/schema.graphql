@@ -1,0 +1,41 @@
+type Query {
+	greeting(name: String!): String!
+	user: User!
+	post: Post!
+	posts: [Post]!
+}
+
+type Mutation {
+	createUser(data: CreateUserInput): User
+	createPost(data: CreatePostInput): Post
+}
+
+type User {
+	id: ID!
+	name: String!
+	email: String!
+	age: Int!
+}
+
+type Post {
+	id: ID!
+	title: String!
+	body: String!
+	category: String!
+	published: Boolean!
+}
+
+input CreateUserInput {
+	id: ID!
+	name: String!
+	email: String!
+	age: Int!
+}
+
+input CreatePostInput {
+	id: ID!
+	title: String!
+	body: String!
+	category: String!
+	published: Boolean!
+}

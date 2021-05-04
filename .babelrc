@@ -1,5 +1,6 @@
 {
-    "presets": ["env"]
+    "presets": ["env"],
+    "plugins": ["transform-object-rest-spread"]                                                              
 }
 
 // root object with presets properties and we provide as string the values of all the presets we want to use. Babel is configured.
