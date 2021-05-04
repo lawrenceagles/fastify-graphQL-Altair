@@ -16,7 +16,6 @@ const resolvers = {
 
 	Mutation: {
 		createPost: async (_, { data }) => {
-			console.log('data', newPost);
 			const newPost = new Post(data);
 			const post = await newPost.save();
 			return post;
@@ -24,4 +23,4 @@ const resolvers = {
 	}
 };
 
-module.exports = resolvers;
+export default resolvers;
