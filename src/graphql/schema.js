@@ -1,20 +1,11 @@
+const schema = `
 type Query {
-	greeting(name: String!): String!
-	user: User!
-	post: Post!
-	posts: [Post]!
+	post(id: ID!): Post!
+	posts(query: String): [Post]!
 }
 
 type Mutation {
-	createUser(data: CreateUserInput): User
 	createPost(data: CreatePostInput): Post
-}
-
-type User {
-	id: ID!
-	name: String!
-	email: String!
-	age: Int!
 }
 
 type Post {
@@ -25,13 +16,6 @@ type Post {
 	published: Boolean!
 }
 
-input CreateUserInput {
-	id: ID!
-	name: String!
-	email: String!
-	age: Int!
-}
-
 input CreatePostInput {
 	id: ID!
 	title: String!
@@ -39,3 +23,6 @@ input CreatePostInput {
 	category: String!
 	published: Boolean!
 }
+`;
+
+export default schema;

@@ -1,6 +1,7 @@
 import fastify from 'fastify';
 import mercurius from 'mercurius';
 import db from './config/index';
+import schema from './graphql/schema';
 import resolvers from './graphql/resolvers';
 
 const Port = process.env.PORT || 4500;

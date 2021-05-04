@@ -2,17 +2,6 @@ const user = require('../models/user');
 
 const resolvers = {
 	Query: {
-		greeting: (_, { name }) => `hello ${name}`,
-
-		user: async (_, obj) => {
-			return {
-				id: 1234567,
-				name: 'Lawrence Eagles',
-				email: 'lawrence@gmail.com',
-				age: 24
-			};
-		},
-
 		posts: async (_, obj) => {
 			return [
 				{
@@ -47,7 +36,7 @@ const resolvers = {
 	},
 
 	Mutation: {
-		createUser: async (_, obj) => {
+		createPost: async (_, obj) => {
 			return { ...obj.data };
 		}
 	}
