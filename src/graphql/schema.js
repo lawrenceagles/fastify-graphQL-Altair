@@ -5,7 +5,7 @@ type Query {
 }
 
 type Mutation {
-	createPost(data: CreatePostInput): Post
+	createPost(data: CreatePostInput!): Post!
 }
 
 type Post {
@@ -17,7 +17,7 @@ type Post {
 }
 
 input CreatePostInput {
-	id: ID!
+	id: ID
 	title: String!
 	body: String!
 	category: String!

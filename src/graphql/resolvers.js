@@ -1,43 +1,25 @@
-const user = require('../models/user');
+import Post from '../models/post';
 
 const resolvers = {
 	Query: {
 		posts: async (_, obj) => {
-			return [
-				{
-					id: 1234566,
-					title: 'Getting started with fastify and grapql',
-					body:
-						'Graphql or the graph query language is just a specification of how things should work. e.g how should queries work. The tool we would to get Graphql up and running on Fastify is mariutius.',
-					category: 'node',
-					published: false
-				},
-				{
-					id: 1234578,
-					title: 'Getting started with fastify and grapql',
-					body:
-						'Graphql or the graph query language is just a specification of how things should work. e.g how should queries work. The tool we would to get Graphql up and running on Fastify is mariutius.',
-					category: 'node',
-					published: true
-				}
-			];
+			const posts = await Post.find({});
+			return posts;
 		},
 
 		post: async (_, obj) => {
-			return {
-				id: 1234566,
-				title: 'Getting started with fastify and grapql',
-				body:
-					'Graphql or the graph query language is just a specification of how things should work. e.g how should queries work. The tool we would to get Graphql up and running on Fastify is mariutius.',
-				category: 'node',
-				published: true
-			};
+			const { id } = obj;
+			const post = await Post.findById(id);
+			return post;
 		}
 	},
 
 	Mutation: {
-		createPost: async (_, obj) => {
-			return { ...obj.data };
+		createPost: async (_, { data }) => {
+			console.log('data', newPost);
+			const newPost = new Post(data);
+			const post = await newPost.save();
+			return post;
 		}
 	}
 };

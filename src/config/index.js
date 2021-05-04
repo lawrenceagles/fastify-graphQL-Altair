@@ -1,8 +1,7 @@
 const fp = require('fastify-plugin');
 const mongoose = require('mongoose');
 const Post = require('../models/post');
-const User = require('../models/user');
-const models = { Post, User };
+const models = { Post };
 
 const ConnectDB = async (fastify, options) => {
 	try {
