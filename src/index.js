@@ -9,7 +9,7 @@ const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/graphql-blog';
 
 const app = fastify({ logger: true });
 
-// Register plugins below:
+// Active plugins below:
 app.register(db, { uri });
 app.register(mercurius, {
 	schema,
