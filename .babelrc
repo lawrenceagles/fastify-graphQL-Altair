@@ -2,13 +2,3 @@
     "presets": ["env"],
     "plugins": ["transform-object-rest-spread"]                                                              
 }
-
-// root object with presets properties and we provide as string the values of all the presets we want to use. Babel is configured.
-// install babel-cli globally
-// install babel-preset-env
-
-// use bable node for locacl development. research babel-node.
-// When we run our start script babel graps our specified file and passes through the babel compiler using our configuration and the output file is what is being run.
-
-// "nodemon ./src/index.js --exec babel-node
-// Nodemon runs our file and passes it throught babel-node
