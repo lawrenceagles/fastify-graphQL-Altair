@@ -1,21 +1,18 @@
-import Post from '../models/post';
+import Data from '../data';
 
 const resolvers = {
 	Query: {
-		posts: async (_, obj) => {
-			const posts = await Post.find({});
-			return posts;
-		},
+		users: async (_, obj) => Data.users,
 
-		post: async (_, obj) => {
+		user: async (_, obj) => {
 			const { id } = obj;
-			const post = await Post.findById(id);
-			return post;
+			const user = Data.users.find();
+			return user;
 		}
 	},
 
 	Mutation: {
-		createPost: async (_, { data }) => {
+		createUser: async (_, { data }) => {
 			const newPost = new Post(data);
 			const post = await newPost.save();
 			return post;

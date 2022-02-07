@@ -1,27 +1,27 @@
 const schema = `
 type Query {
-	post(id: ID!): Post!
-	posts: [Post]!
+	user(id: ID!): User!
+	users: [User]!
 }
 
 type Mutation {
-	createPost(data: CreatePostInput!): Post!
+	createUser(data: CreateUserInput!): User!
 }
 
-type Post {
+type User {
 	id: ID!
-	title: String!
-	body: String!
-	category: String!
-	published: Boolean!
+	username: String!
+	email: String!
+	password: String!
+	role: String!
 }
 
-input CreatePostInput {
-	id: ID
-	title: String!
-	body: String!
-	category: String!
-	published: Boolean!
+input CreateUserInput {
+	id: ID!
+	username: String!
+	email: String!
+	password: String!
+	role: String!
 }
 `;
 
