@@ -10,13 +10,13 @@ directive @auth(
   }
 
 type Query {
-	user(id: ID!): User!
+	user(id: ID!): User! @auth(requires: ADMIN)
 	users: [User]! @auth(requires: ADMIN)
 	login(username:String!, password:String!): String
 }
 
 type Mutation {
-	addUser(data: CreateUserInput!): User!
+	addUser(data: CreateUserInput!): User! @auth(requires: ADMIN)
 }
 
 type User {
