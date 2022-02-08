@@ -19,18 +19,20 @@ app.register(mercurius, {
 
 app.register(mercuriusAuth, {
 	authContext(context) {
-		const token = context.reply.request.headers['x-user'];
-		const claim = jwt.verify(token, 'mysecrete');
-		return { identity: claim.role };
+		return { identity: context.reply.request.headers['x-user'] };
 	},
 	async applyPolicy(authDirectiveAST, parent, args, context, info) {
-		if (!context.auth.identity) {
-			throw new Error(`unauthenticated user`);
+		const token = context.auth.identity;
+		try {
+			const claim = jwt.verify(token, 'mysecrete');
+
+			// if (claim.role === 'admin') {
+			// 	throw new Error(`insufficient permission`);
+			// }
+		} catch (error) {
+			throw new Error(`An error occurred. Try again!`);
 		}
 
-		if (context.auth.identity !== 'admin') {
-			throw new Error(`insufficient permission`);
-		}
 		return true;
 	},
 	authDirective: 'auth'
