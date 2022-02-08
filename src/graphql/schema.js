@@ -1,11 +1,22 @@
 const schema = `
+
+directive @auth(
+    requires: Role = ADMIN,
+  ) on OBJECT | FIELD_DEFINITION
+
+  enum Role {
+    ADMIN
+    USER
+  }
+
 type Query {
 	user(id: ID!): User!
-	users: [User]!
+	users: [User]! @auth(requires: ADMIN)
+	login(username:String!, password:String!): String
 }
 
 type Mutation {
-	createUser(data: CreateUserInput!): User!
+	addUser(data: CreateUserInput!): User!
 }
 
 type User {
