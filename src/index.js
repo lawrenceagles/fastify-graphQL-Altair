@@ -39,7 +39,7 @@ app.register(mercuriusAuth, {
 		try {
 			const claim = jwt.verify(token, 'mysecrete');
 		} catch (error) {
-			throw new Error(`An error occurred. Try again!`);
+			throw new Error(`An error occurred. ${error}`);
 		}
 
 		return true;
