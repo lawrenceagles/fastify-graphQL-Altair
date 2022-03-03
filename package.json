@@ -12,11 +12,12 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"fastify": "^3.27.1",
+		"altair-fastify-plugin": "^4.4.0",
+		"fastify": "^3.27.2",
 		"fastify-plugin": "^3.0.0",
+		"jsonwebtoken": "^8.5.1",
 		"mercurius": "^7.9.1",
 		"mercurius-auth": "^2.0.0",
-		"mongoose": "^5.12.7",
 		"nodemon": "^2.0.7"
 	},
 	"devDependencies": {}
