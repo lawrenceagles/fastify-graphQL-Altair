@@ -11,7 +11,7 @@ directive @auth(
 
 type Query {
 	user(id: ID!): User! @auth(requires: ADMIN)
-	users: [User]! @auth(requires: USER)
+	users: [User]! @auth(requires: ADMIN)
 	login(username:String!, password:String!): String
 }
 

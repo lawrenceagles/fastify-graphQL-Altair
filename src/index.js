@@ -7,9 +7,7 @@ import AltairFastify from 'altair-fastify-plugin';
 import schema from './graphql/schema';
 import resolvers from './graphql/resolvers';
 
-const Port = process.env.PORT || 4000;
-const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/graphql-blog';
-
+const Port = process.env.PORT || 4500;
 const app = fastify({ logger: true });
 
 // register Alter
@@ -40,7 +38,7 @@ app.register(mercuriusAuth, {
 		try {
 			const claim = jwt.verify(token, 'mysecrete');
 		} catch (error) {
-			throw new Error(`An error occurred: ${error}`);
+			throw new Error(`An error occurred. ${error}`);
 		}
 
 		return true;
