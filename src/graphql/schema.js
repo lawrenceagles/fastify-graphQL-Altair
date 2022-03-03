@@ -15,19 +15,7 @@ type Query {
 	login(username:String!, password:String!): String
 }
 
-type Mutation {
-	addUser(data: CreateUserInput!): User! @auth(requires: ADMIN)
-}
-
 type User {
-	id: ID!
-	username: String!
-	email: String!
-	password: String!
-	role: String!
-}
-
-input CreateUserInput {
 	id: ID!
 	username: String!
 	email: String!

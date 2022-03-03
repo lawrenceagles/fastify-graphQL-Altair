@@ -2,6 +2,7 @@ import fastify from 'fastify';
 import jwt from 'jsonwebtoken';
 import mercurius from 'mercurius';
 import mercuriusAuth from 'mercurius-auth';
+import AltairFastify from 'altair-fastify-plugin';
 
 import schema from './graphql/schema';
 import resolvers from './graphql/resolvers';
@@ -10,13 +11,25 @@ const Port = process.env.PORT || 4500;
 
 const app = fastify({ logger: true });
 
+// register Alter
+app.register(AltairFastify, {
+	/**
+	 * All these are the defaults.
+	 */
+	path: '/altair',
+	baseURL: '/altair/',
+	endpointURL: '/graphql'
+});
+
 // Active plugins below:
 app.register(mercurius, {
 	schema,
 	resolvers,
-	graphiql: 'playground'
+	graphiql: 'playground',
+	queryDepth: 7
 });
 
+// register auth policy
 app.register(mercuriusAuth, {
 	authContext(context) {
 		return { identity: context.reply.request.headers['x-user'] };
@@ -25,10 +38,6 @@ app.register(mercuriusAuth, {
 		const token = context.auth.identity;
 		try {
 			const claim = jwt.verify(token, 'mysecrete');
-
-			// if (claim.role === 'admin') {
-			// 	throw new Error(`insufficient permission`);
-			// }
 		} catch (error) {
 			throw new Error(`An error occurred. Try again!`);
 		}

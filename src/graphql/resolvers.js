@@ -22,12 +22,6 @@ const resolvers = {
 			const token = jwt.sign({ username: user.username, password: user.password, role: user.role }, 'mysecrete');
 			return token;
 		}
-	},
-
-	Mutation: {
-		addUser: async (_, { data }) => {
-			return [ ...Data.users, data ];
-		}
 	}
 };
 
