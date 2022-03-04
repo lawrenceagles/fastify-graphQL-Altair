@@ -35,10 +35,21 @@ app.register(mercuriusAuth, {
 	},
 	async applyPolicy(authDirectiveAST, parent, args, context, info) {
 		const token = context.auth.identity;
-		try {
-			const claim = jwt.verify(token, 'mysecrete');
-		} catch (error) {
-			throw new Error(`An error occurred. ${error}`);
+
+		if (!token) {
+			const err = new mercurius.ErrorWithProps(`User is not Authenticated`);
+			err.statusCode = 401;
+			return err;
+		}
+
+		const claim = jwt.verify(token, 'mysecrete');
+
+		if (claim.role !== 'admin') {
+			const err = new mercurius.ErrorWithProps(
+				`You do not have the permission to query the ${info.fieldName} field!`
+			);
+			err.statusCode = 403;
+			return err;
 		}
 
 		return true;
