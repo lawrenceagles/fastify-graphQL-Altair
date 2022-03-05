@@ -21,7 +21,7 @@ const resolvers = {
 		login: async (_, { username, password }) => {
 			let user = Data.users.find((user) => user.username === username && user.password === password);
 			if (!user) {
-				throw new mercurius.ErrorWithProps('Username or password incorrect', { id, code: 'INVLID_USER' }, 404);
+				throw new mercurius.ErrorWithProps('Username or password incorrect', { id, code: 'INVLID_USER' }, 401);
 			}
 
 			const token = jwt.sign({ username: user.username, password: user.password, role: user.role }, 'mysecrete');
