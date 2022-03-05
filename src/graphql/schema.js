@@ -12,7 +12,7 @@ directive @auth(
 type Query {
 	user(id: ID!): User! @auth(requires: ADMIN)
 	users: [User]! @auth(requires: ADMIN)
-	login(username:String!, password:String!): String
+	login(username:String!, password:String!): User!
 }
 
 type User {
@@ -21,6 +21,7 @@ type User {
 	email: String!
 	password: String!
 	role: String!
+	token: String
 }
 `;
 
